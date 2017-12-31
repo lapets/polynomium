@@ -1,6 +1,8 @@
 # polynomium
 Library for symbolically representing and working with polynomials.
 
+[![npm version](https://badge.fury.io/js/polynomium.svg)](https://badge.fury.io/js/polynomium)
+
 ## Package Installation and Usage
 
 ```shell
