@@ -1,0 +1,29 @@
+{
+  "name": "polynomium",
+  "version": "0.0.1",
+  "author": {
+    "name": "Andrei Lapets",
+    "email": "a@lapets.io"
+  },
+  "description": "Library for symbolically representing and working with polynomials.",
+  "homepage": "https://github.com/lapets/polynomium",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lapets/polynomium"
+  },
+  "bugs": {
+    "url": "https://github.com/lapets/polynomium/issues"
+  },
+  "keywords": [
+    "math",
+    "mathematics",
+    "polynomial",
+    "polynomials"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "main": "lib/polynomium.js",
+  "dependencies": {},
+  "analyze": false,
+  "preferGlobal": false
+}
