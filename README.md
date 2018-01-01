@@ -59,3 +59,11 @@ It is also possible to evaluate a polynomial by supplying an object that binds e
 > r({"x":2, "y":5})
 625
 ```
+
+## Testing
+
+Unit tests are included in `test/test.js`. They can be run using [Mocha](https://mochajs.org/):
+
+```javascript
+npm test
+```

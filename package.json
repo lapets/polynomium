@@ -1,6 +1,6 @@
 {
   "name": "polynomium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Andrei Lapets",
     "email": "a@lapets.io"
@@ -24,6 +24,9 @@
   "readmeFilename": "README.md",
   "main": "lib/polynomium.js",
   "dependencies": {},
+  "scripts": {
+    "test": "mocha test"
+  },
   "analyze": false,
   "preferGlobal": false
 }
