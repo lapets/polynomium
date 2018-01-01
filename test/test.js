@@ -9,7 +9,6 @@ var p = (y.mul(x.add(b)));
 var q = (y.mul(x.add(b))).mul(a);
 var r = (y.mul(x.add(b))).mul((y.mul(x.add(b))));
 
-console.log(p.toString());
 console.log(x.toString());
 console.log(y.toString());
 console.log(b.toString());
@@ -20,3 +19,5 @@ console.log(p.toString());
 console.log(a.toString());
 console.log(q.toString());
 console.log(r.toString());
+console.log(r.evaluate({"x":2, "y":5}));
+console.log(r({"x":2, "y":5}));
