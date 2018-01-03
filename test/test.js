@@ -1,6 +1,6 @@
 var assert = require('assert');
 var expect = require('chai').expect;
-var polynomium = require('../lib/polynomium');
+var polynomium = require('../src/polynomium');
 
 describe('polynomium', function() {
   var x = polynomium.v('x');

@@ -9,8 +9,10 @@
 
 (function (polynomium) {
 
-  // Because parseInt expects two arguments,
-  // we need a wrapper for use with .map().
+  /**
+   * Wrapper because parseInt expects two arguments; we need a wrapper
+   * for use with Array.map().
+   */
   function num(s) {
     return parseInt(s);
   }

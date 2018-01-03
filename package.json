@@ -1,6 +1,6 @@
 {
   "name": "polynomium",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": {
     "name": "Andrei Lapets",
     "email": "a@lapets.io"
@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "readmeFilename": "README.md",
-  "main": "lib/polynomium.js",
+  "main": "src/polynomium.js",
   "dependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1"
