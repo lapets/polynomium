@@ -49,6 +49,15 @@ Given the polynomials above, it is possible to display them in a human-readable 
 'x^2*y^2 + 6x*y^2 + 9y^2'
 ```
 
+When possible, the operator functions will convert arguments that are numeric constants and valid variable names into polynomium objects:
+
+```javascript
+> (y.add(x.add(5))).toString()
+'y + x + 5'
+> (y.add('x')).toString()
+'y + x'
+```
+
 By default, the terms in the outer sum are in order of descending significance (where a term's significance is the sum of its exponents across its factors). The individual variables within factors are in ascending alphabetical order.
 
 It is also possible to evaluate a polynomial by supplying an object that binds explicit values to each variable:

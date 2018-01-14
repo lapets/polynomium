@@ -40,16 +40,21 @@ describe('polynomium', function() {
   describe('#add()', function () { 
     it('add', function() {
       assert.equal((b.add(b)).toString(), '6');
+      assert.equal((b.add(3)).toString(), '6');
       assert.equal((x.add(b)).toString(), 'x + 3');
+      assert.equal((x.add(3)).toString(), 'x + 3');
       assert.equal((x.add(y)).toString(), 'x + y');
+      assert.equal((x.add('y')).toString(), 'x + y');
       assert.equal(((x.mul(polynomium.c(-1))).add(y)).toString(), '-x + y');
       assert.equal(((x.mul(polynomium.c(-2))).add(y)).toString(), '-2x + y');
       assert.equal((x.add(y.mul(polynomium.c(-1)))).toString(), 'x - y');
       assert.equal((x.add(y.mul(polynomium.c(-2)))).toString(), 'x - 2y');
+      assert.equal((x.add(y.mul(-2))).toString(), 'x - 2y');
       assert.equal((x.add(a)).toString(), 'x + 2');
       assert.equal((y.add(x.add(b))).toString(), 'y + x + 3');
-      expect(() => polynomium.add(y, 123)).to.throw(Error, 'Only two polynomium objects can be added');
-      expect(() => y.add('123')).to.throw(Error, 'Only two polynomium objects can be added');
+      expect(() => (x.add('123y')).toString()).to.throw(Error, 'Variable name must be an alphanumeric string that begins with a letter');
+      expect(() => polynomium.add(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be added');
+      expect(() => y.add(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be added');
     });
   });
 
@@ -58,8 +63,10 @@ describe('polynomium', function() {
       assert.equal((y.mul(x.add(b))).toString(), 'x*y + 3y');
       assert.equal(((y.mul(x.add(b))).mul(a)).toString(), '2x*y + 6y');
       assert.equal(((y.mul(x.add(b))).mul((y.mul(x.add(b))))).toString(), 'x^2*y^2 + 6x*y^2 + 9y^2');
-      expect(() => polynomium.mul(y, 123)).to.throw(Error, 'Only two polynomium objects can be multiplied');
-      expect(() => y.mul('123')).to.throw(Error, 'Only two polynomium objects can be multiplied');
+      assert.equal(((y.mul(x.add(3))).mul((y.mul(x.add(3))))).toString(), 'x^2*y^2 + 6x*y^2 + 9y^2');
+      expect(() => (x.mul('123y')).toString()).to.throw(Error, 'Variable name must be an alphanumeric string that begins with a letter');
+      expect(() => polynomium.mul(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be multiplied');
+      expect(() => y.mul(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be multiplied');
     });
   });
   

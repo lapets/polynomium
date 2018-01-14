@@ -221,8 +221,14 @@
    * @throws error if either argument is not a polynomial object.
    */
   polynomium.add = function (p, q) {
-    var terms = [];
-    if (p.polynomium == true && q.polynomium == true) {
+    if (typeof q === "number") // Convert number to polynomium object.
+      q = polynomium.constant(q);
+
+    if (typeof q === "string") // Convert string to polynomium object.
+      q = polynomium.variable(q);
+
+    if (q.polynomium == true) {
+      var terms = [];
       var f = function () { return 0; };
       var terms = {};
       for (var p_base in p.terms)
@@ -233,7 +239,7 @@
           add_default(terms, [q_base, q_exps], 0, q.terms[q_base][q_exps]);
       return polynomium.create(terms);
     } else {
-      throw new Error("Only two polynomium objects can be added");
+      throw new Error("Only a polynomium object, number, or valid variable can be added");
     }
   };
 
@@ -246,8 +252,14 @@
    * @throws error if either argument is not a polynomial object.
    */
   polynomium.mul = function (p, q) {
-    var terms = [];
-    if (p.polynomium == true && q.polynomium == true) {
+    if (typeof q === "number") // Convert number to polynomium object.
+      q = polynomium.constant(q);
+      
+    if (typeof q === "string") // Convert string to polynomium object.
+      q = polynomium.variable(q);
+
+    if (q.polynomium == true) {
+      var terms = [];
       var f = function () { return 0; };
       var terms = {};
       for (var p_base in p.terms) {
@@ -273,7 +285,7 @@
 
       return polynomium.create(terms);
     } else {
-      throw new Error("Only two polynomium objects can be multiplied");
+      throw new Error("Only a polynomium object, number, or valid variable can be multiplied");
     }
   };
 
