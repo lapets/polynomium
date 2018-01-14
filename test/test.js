@@ -12,6 +12,7 @@ describe('polynomium', function() {
 
   describe('#toString()', function () { 
     it('toString', function() {
+      assert.equal(polynomium.c(0).toString(), '0');
       assert.equal(x.toString(), 'x');
       assert.equal(a.toString(), '2');
     });
@@ -41,6 +42,10 @@ describe('polynomium', function() {
       assert.equal((b.add(b)).toString(), '6');
       assert.equal((x.add(b)).toString(), 'x + 3');
       assert.equal((x.add(y)).toString(), 'x + y');
+      assert.equal(((x.mul(polynomium.c(-1))).add(y)).toString(), '-x + y');
+      assert.equal(((x.mul(polynomium.c(-2))).add(y)).toString(), '-2x + y');
+      assert.equal((x.add(y.mul(polynomium.c(-1)))).toString(), 'x - y');
+      assert.equal((x.add(y.mul(polynomium.c(-2)))).toString(), 'x - 2y');
       assert.equal((x.add(a)).toString(), 'x + 2');
       assert.equal((y.add(x.add(b))).toString(), 'y + x + 3');
       expect(() => polynomium.add(y, 123)).to.throw(Error, 'Only two polynomium objects can be added');
