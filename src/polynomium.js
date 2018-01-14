@@ -190,16 +190,26 @@
         var a = p.terms[base][exps], hasVars = !(term.length == 1 && term[0] == "#");
         if (Math.abs(a) > 0) { // This may drop all terms, so restore zero later.
           term = term.filter(function (v) { return v != "#"; });
-          indexed.push([index, ((a == 1 && hasVars) ? "" : a) + term.join("*")]);
+          var oper = " + ";
+          if (a < 0) { // Move negation symbol from term and into operator position.
+            a = Math.abs(a);
+            oper = " - ";
+          }
+          if (hasVars && a == 1) // Do not show a coefficient of 1.
+            a = "";
+          indexed.push([index, oper, a + term.join("*")]);
         }
       }
     }
-    
     if (indexed.length == 0) // Restore zero or sort ascending by variables in terms.
-      indexed = [[0, '0']];
+      indexed = [[0, '', '0']];
     else
       indexed = indexed.sort(function(i, j) { return j[0] - i[0]; });
-    return indexed.map(function(i_t) { return i_t[1]; }).join(" + ");
+
+    // No leading + or spaces.
+    indexed[0][1] = (indexed[0][1] == " + ") ? "" : indexed[0][1].trim();
+
+    return indexed.map(function(i_t) { return i_t[1] + i_t[2]; }).join("");
   };
 
   /**
