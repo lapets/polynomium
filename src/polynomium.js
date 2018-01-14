@@ -188,13 +188,17 @@
           index += (vs[i] != "#") ? es[i] : 0; // For sorting by significance.
         }
         var a = p.terms[base][exps], hasVars = !(term.length == 1 && term[0] == "#");
-        if (Math.abs(a) > 0) {
+        if (Math.abs(a) > 0) { // This may drop all terms, so restore zero later.
           term = term.filter(function (v) { return v != "#"; });
           indexed.push([index, ((a == 1 && hasVars) ? "" : a) + term.join("*")]);
         }
       }
     }
-    indexed = indexed.sort(function(i, j) { return j[0] - i[0]; });
+    
+    if (indexed.length == 0) // Restore zero or sort ascending by variables in terms.
+      indexed = [[0, '0']];
+    else
+      indexed = indexed.sort(function(i, j) { return j[0] - i[0]; });
     return indexed.map(function(i_t) { return i_t[1]; }).join(" + ");
   };
 
