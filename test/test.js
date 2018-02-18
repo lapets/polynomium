@@ -18,6 +18,14 @@ describe('polynomium', function() {
     });
   });
 
+  describe('#toObject()', function () { 
+    it('toObject', function() {
+      assert.deepEqual(polynomium.c(0).toObject(), {polynomium:true, terms:{'#':{'1':0}}});
+      assert.deepEqual(x.toObject(), {polynomium:true, terms:{'#':{'1':0}, x:{'1':1}}});
+      assert.deepEqual(x.toObject(), polynomium.create(x.toObject()).toObject());
+    });
+  });
+
   describe('#variable()', function () { 
     it('variable', function() {
       assert.equal(x.toString(), 'x');
