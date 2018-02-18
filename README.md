@@ -6,15 +6,16 @@ Library for symbolically representing and working with polynomials.
 ## Package Installation and Usage
 
 The package is available on npm:
-
 ```shell
 npm install polynomium
 ```
-
 The library can be imported in the usual ways:
-
 ```javascript
 var polynomium = require('polynomium');
+```
+The library also supports standalone usage in browsers:
+```html
+<script src="https://lapets.github.io/polynomium/lib/polynomium.js"></script>
 ```
 
 ## Examples
