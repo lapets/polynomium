@@ -90,7 +90,7 @@ describe('polynomium', function() {
 
   describe('multiplication', function() {
     it('should combine equivalent terms correctly', function() {
-      let two = polynomium.c(2)
+      let two = polynomium.c(2);
       let x = polynomium.v("x");
       let p = x.add(two.mul(x));
       assert.equal(p.toString(), '3x');
@@ -102,8 +102,24 @@ describe('polynomium', function() {
       let t = ab.add(ab2);
       assert.equal(t.toString(), '3a*b');
 
+      let three = polynomium.c(3);
+      let six = three.mul(two);
+      assert.equal(six.toString(), '6');
 
+      let a6 = six.mul(a);
+      assert.equal(a6.toString(), '6a');
 
+      let a7 = a6.add(a);
+      assert.equal(a7.toString(), '7a');
+
+      let asqu7 = a7.mul(a);
+      assert.equal(asqu7.toString(), '7a^2');
+
+      let asqu7pb = asqu7.add(b);
+      assert.equal(asqu7pb.toString(), '7a^2 + b');
+
+      let t2 = asqu7pb.mul(b);
+      assert.equal(t2.toString(), '7a^2*b + b^2');
     });
   });
 });
