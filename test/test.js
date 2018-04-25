@@ -87,4 +87,23 @@ describe('polynomium', function() {
       expect(() => r({"x":2})).to.throw(Error, "Variable 'y' has no bound value in supplied bindings");
     });
   });
+
+  describe('multiplication', function() {
+    it('should combine equivalent terms correctly', function() {
+      let two = polynomium.c(2)
+      let x = polynomium.v("x");
+      let p = x.add(two.mul(x));
+      assert.equal(p.toString(), '3x');
+
+      let a = polynomium.v("a");
+      let b = polynomium.v("b");
+      let ab = a.mul(b);
+      let ab2 = ab.mul(polynomium.c(2));
+      let t = ab.add(ab2);
+      assert.equal(t.toString(), '3a*b');
+
+
+
+    });
+  });
 });
