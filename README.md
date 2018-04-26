@@ -43,6 +43,8 @@ Given the polynomials above, it is possible to display them in a human-readable 
 'x*y + 3y'
 > q.toString()
 '2x*y + 6y'
+> q.maxCoefficients(p).toString()
+'2x*y + 6y'
 > r.toString()
 'x^2*y^2 + 6x*y^2 + 9y^2'
 ```
