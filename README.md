@@ -67,16 +67,14 @@ In some cases, function objects cannot be used within data structures (such as w
 > var o = r.toObject()
 > o
 { polynomium: true,
-  terms:
-   { '#,y': { '1,2': 9 },
-     '#,x,y': { '1,1,2': 6 },
-     'x,y': { '2,2': 1 } } }
+  terms: 
+   { 'y': { '2': 9 }, 
+     'x,y': { '1,2': 6, '2,2': 1 } } }
 > polynomium.add(o, o).toObject()
 { polynomium: true,
-  terms:
-   { '#,y': { '1,2': 18 },
-     '#,x,y': { '1,1,2': 12 },
-     'x,y': { '2,2': 2 } } }
+  terms: 
+   { 'y': { '2': 18 }, 
+     'x,y': { '1,2': 12, '2,2': 2 } } }
 ```
 
 ## Testing
