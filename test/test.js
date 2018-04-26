@@ -61,8 +61,8 @@ describe('polynomium', function() {
       assert.equal((x.add(a)).toString(), 'x + 2');
       assert.equal((y.add(x.add(b))).toString(), 'y + x + 3');
       expect(() => (x.add('123y')).toString()).to.throw(Error, 'Variable name must be an alphanumeric string that begins with a letter');
-      expect(() => polynomium.add(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be added');
-      expect(() => y.add(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be added');
+      expect(() => polynomium.add(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
+      expect(() => y.add(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
     });
   });
 
@@ -73,8 +73,8 @@ describe('polynomium', function() {
       assert.equal(((y.mul(x.add(b))).mul((y.mul(x.add(b))))).toString(), 'x^2*y^2 + 6x*y^2 + 9y^2');
       assert.equal(((y.mul(x.add(3))).mul((y.mul(x.add(3))))).toString(), 'x^2*y^2 + 6x*y^2 + 9y^2');
       expect(() => (x.mul('123y')).toString()).to.throw(Error, 'Variable name must be an alphanumeric string that begins with a letter');
-      expect(() => polynomium.mul(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be multiplied');
-      expect(() => y.mul(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be multiplied');
+      expect(() => polynomium.mul(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
+      expect(() => y.mul(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
     });
   });
   
@@ -88,7 +88,7 @@ describe('polynomium', function() {
     });
   });
 
-  describe('multiplication', function() {
+  describe('term-exponents', function() {
     it('should combine equivalent terms correctly', function() {
       let two = polynomium.c(2);
       let x = polynomium.v("x");
