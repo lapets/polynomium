@@ -8,9 +8,10 @@ describe('polynomium', function() {
   var a = polynomium.c(2);
   var b = polynomium.c(3);
   var c = polynomium.c(5);
+  var d = (a.mul(x)).add(b.mul(y));
   var r = (y.mul(x.add(b))).mul((y.mul(x.add(b))));
 
-  describe('#toString()', function () { 
+  describe('#toString()', function () {
     it('toString', function() {
       assert.equal(polynomium.c(0).toString(), '0');
       assert.equal(x.toString(), 'x');
@@ -18,7 +19,7 @@ describe('polynomium', function() {
     });
   });
 
-  describe('#toObject()', function () { 
+  describe('#toObject()', function () {
     it('toObject', function() {
       assert.deepEqual(polynomium.c(0).toObject(), {polynomium:true, terms:{'#':{'1':0}}});
       assert.deepEqual(x.toObject(), {polynomium:true, terms:{'#':{'1':0}, x:{'1':1}}});
@@ -26,7 +27,7 @@ describe('polynomium', function() {
     });
   });
 
-  describe('#variable()', function () { 
+  describe('#variable()', function () {
     it('variable', function() {
       assert.equal(x.toString(), 'x');
       assert.equal(y.toString(), 'y');
@@ -45,7 +46,7 @@ describe('polynomium', function() {
     });
   });
 
-  describe('#add()', function () { 
+  describe('#add()', function () {
     it('add', function() {
       assert.equal((b.add(b)).toString(), '6');
       assert.equal((b.add(3)).toString(), '6');
@@ -66,7 +67,25 @@ describe('polynomium', function() {
     });
   });
 
-  describe('#mul()', function () { 
+  describe('#maxCoefficients()', function () {
+    it('maxCoefficients', function() {
+      assert.equal((b.maxCoefficients(b)).toString(), '3');
+      assert.equal((b.maxCoefficients(3)).toString(), '3');
+      assert.equal((x.maxCoefficients(b)).toString(), 'x + 3');
+      assert.equal((x.maxCoefficients(3)).toString(), 'x + 3');
+      assert.equal((x.maxCoefficients(y)).toString(), 'x + y');
+      assert.equal((x.maxCoefficients('y')).toString(), 'x + y');
+      assert.equal((x.maxCoefficients(a)).toString(), 'x + 2');
+      assert.equal((x.maxCoefficients(x)).toString(), 'x');
+      assert.equal((d.maxCoefficients(d)).toString(), '2x + 3y');
+      assert.equal((y.maxCoefficients(x.maxCoefficients(b))).toString(), 'y + x + 3');
+      expect(() => (x.maxCoefficients('123y')).toString()).to.throw(Error, 'Variable name must be an alphanumeric string that begins with a letter');
+      expect(() => polynomium.maxCoefficients(y, true)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
+      expect(() => y.maxCoefficients(false)).to.throw(Error, 'Only a polynomium object, number, or valid variable can be an argument');
+    });
+  });
+
+  describe('#mul()', function () {
     it('mul', function() {
       assert.equal((y.mul(x.add(b))).toString(), 'x*y + 3y');
       assert.equal(((y.mul(x.add(b))).mul(a)).toString(), '2x*y + 6y');
@@ -78,7 +97,7 @@ describe('polynomium', function() {
     });
   });
   
-  describe('#evaluate()', function () { 
+  describe('#evaluate()', function () {
     it('evaluate', function() {
       assert.equal(polynomium.c(123).evaluate({}), 123);
       assert.equal(polynomium.v('x').evaluate({"x":2}), 2);
